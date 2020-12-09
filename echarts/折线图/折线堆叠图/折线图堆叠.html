@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>折线图堆叠</title>
+    <script src="../../js/echarts.min.js"></script>
+</head>
+<body>
+    <div id="main" style="width: 600px;height: 400px;"></div>
+    <script>
+        var str=["毛衣","羽绒服","羊绒大衣","牛仔裤","棉靴"]
+        var mydata=function(data){
+            var myecharts=echarts.init(document.getElementById("main"))
+
+            var option={
+                title:{
+                    text:'一周销量图'
+                },
+                tooltip:{
+                    trigger:'axis',     //坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用
+                    axisPointer:{       //坐标轴指示器
+                        type:'cross',   //十字准星指示器
+                        label:{
+                            backgroundColor:'#ccc'
+                        }
+                    }
+                },
+                legend:{
+                    data:data.tool
+                },
+                grid:{
+                    left:'3%',
+                    right:'5%',
+                    bottom:'3%',
+                    containLabel:true   //grid 区域是否包含坐标轴的刻度标签
+                },
+                toolbox:{
+                    feature:{
+                        magicType:{
+                            type:['stack','tiles']      //此处定义，可切换为总量
+                        },
+                        saveAsImage:{}      //保存为图片
+                    }
+                },
+                xAxis:{
+                    type:'category',
+                    boundaryGap:false,      //与边缘留白区域
+                    data:data.xdata
+                },
+                yAxis:[{
+                    type:'value'
+                }],
+                series:[{
+                    "name":'毛衣',
+                    "type":"line",
+                    // "stack":'总量',
+                    lineStyle:{             //线条样式
+                        width:5             //线宽
+                    },
+                    areaStyle:{},
+                    emphasis:{              //图形的高亮样式
+                        focus:'series'      //聚焦
+                    },
+                    "data":data.sedata[0]
+                },
+                {
+                    "name":"羽绒服",
+                    "type":"line",
+                    // "stack":"总量",     //与tooltip中magicType相等，此处定义默认为总量
+                    areaStyle:{},
+                    emphasis:{
+                        focus:'series'
+                    },
+                    "data":data.sedata[1]
+                },
+                {
+                    "name":"羊绒大衣",
+                    "type":"line",
+                    // "stack":"总量",
+                    areaStyle:{},
+                    emphasis:{
+                        focus:'series'
+                    },
+                    "data":data.sedata[2]
+                },
+                {
+                    "name":"牛仔裤",
+                    "type":"line",
+                    // "stack":"总量",
+                    areaStyle:{},
+                    emphasis:{
+                        focus:'series'
+                    },
+                    "data":data.sedata[3]
+                },
+                {
+                    "name":"棉靴",
+                    "type":"line",
+                    // "stack":"总量",
+                    label:{                 //图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等
+                        show:true,
+                        position:'top'      //坐标点文本与点的位置关系
+                    },
+                    areaStyle:{},
+                    emphasis:{
+                        focus:'series'
+                    },
+                    "data":data.sedata[4]
+                }
+                ]
+            }
+
+            myecharts.setOption(option)
+        }
+    </script>
+    <script src="duidata.js"></script>
+</body>
+</html>

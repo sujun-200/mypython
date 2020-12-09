@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="../js/jquery.min.js"></script> -->
+    <script src="../../js/echarts.min.js"></script>
+</head>
+<body>
+    <div id="main" style="width: 600px;height: 300px;"></div>
+    <script type="text/javascript">
+        var mydata=function(data){
+            // console.log(data.zhi)
+            var mycharts=echarts.init(document.getElementById("main"));
+            var option={
+                title:{
+                    text:'测试'
+                },
+                tooltip:{},
+                legend:{
+                    data:['test']
+                },
+                xAxis:{
+                    type:'category',        //坐标轴类型：类目轴
+                    // boundaryGap:false,      //1.基础面积图  ：类目轴中：留白区域，与左边坐标轴和右边图的边缘之间是否有留白。默认true
+                    data:data.data
+                },
+                yAxis:{
+                    type:'value'        //坐标轴类型：数值轴
+                },
+                series:[{
+                    name:'test',
+                    type:'line',
+                    data:data.zhi,
+                    smooth:true,        //平滑曲线图。值可为数字
+                    areaStyle:{         //2.基础面积图。区域填充样式
+                        color:'#ccc'    //支持RGB、ALPHA通道+RGBA、十六进制、渐变色、纹理填充
+                    }        
+                }]
+            };
+
+            mycharts.setOption(option);
+        }
+    </script>
+    <script src="data.js"></script>
+</body>
+</html>

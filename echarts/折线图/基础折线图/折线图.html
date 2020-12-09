@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>折线图</title>
+    <script src="../js/echarts.min.js"></script>
+</head>
+
+<body>
+    <div id="main" style="width: 600px;height: 400px;"></div>
+    <script type="text/javascript">
+        var mycharts=echarts.init(document.getElementById("main"));
+        var option={
+            title:{
+                text:'测试'
+            },
+            tooltip:{},
+            legend:{
+                data:['test']
+            },
+            xAxis:{
+                type:'category',
+                data:['1','2','3','4','5']
+            },
+            yAxis:{
+                type:'value'
+            },
+            series:[{
+                name:'test',
+                data:[12,15,10,15,16],
+                type:'line'
+            }]
+        };
+    
+        mycharts.setOption(option);
+    </script>
+</body>
+</html>
